@@ -23,11 +23,9 @@ class ShakingAreaCell: UICollectionViewCell {
         }
     }
     
-    func displayContent(with area : [String: Any]) {
-        self.areaName.text = area["areaName"] as? String
-        if let areaIntensity = area["areaIntensity"] as? [String: Any] {
-            self.text.text = areaIntensity["#text"] as? String
-            self.unit.text = areaIntensity["-unit"] as? String
-        }
+    func displayContent(with area : ShakingArea) {
+        self.areaName.text = area.areaName
+        self.text.text = "\(area.areaIntensity)"
+        self.unit.text = "級"
     }
 }

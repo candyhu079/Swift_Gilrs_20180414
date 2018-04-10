@@ -13,18 +13,19 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var collectionView: UICollectionView!
     
     //地震資料
-    var earthquake: [String: Any] = [:]
+    var earthquake: Earthquake = Earthquake()
     //分區震度
-    var shakingArea: [[String: Any]] = [[:]]
+    var shakingArea: [ShakingArea] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Use FakeData.
-        earthquake = FakeData.fakeEarthquake
-        if let intensity = earthquake["intensity"] as? [String: Any], let shakingAreas = intensity["shakingArea"] as? [[String: Any]] {
-            shakingArea = shakingAreas
-        }
+//        //Use FakeData.
+//        earthquake = FakeData.initFakeData(earthquake)
+//        if let shakingAreas = earthquake.intensityArray {
+//            self.shakingArea = shakingAreas
+//        }
+        print("earthqauke:\(earthquake.reportContent)...")
         
         //Set CollectionView Datasource and Delegate
         collectionView.dataSource = self
