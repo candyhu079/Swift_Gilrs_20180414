@@ -20,6 +20,21 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Real Data
+        DataApi.getData { (earthquake, error) in
+            guard error == nil, let earthquake = earthquake else {
+                return
+            }
+            // 取得資料了
+            self.earthquake = earthquake
+            if let shakingAreas = earthquake.intensityArray {
+                self.shakingArea = shakingAreas
+            }
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+        
 //        //Use FakeData.
 //        earthquake = FakeData.initFakeData(earthquake)
 //        if let shakingAreas = earthquake.intensityArray {
