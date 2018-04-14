@@ -72,6 +72,10 @@ class DataApi: NSObject, XMLParserDelegate {
         } else if elementName == "eqStation" {
             eqStation = EqStation()
         }
+        // 取到的字串先把空白刪掉，然後判斷字串長度，長度大於0 表示還有字，可以繼續望下執行程式，長度等於0 表示還有沒字了，就不用繼續往下執行了
+        guard (string.trimmingCharacters(in: [" ", "\n"])).count > 0 else {
+            return
+        }
  
         //earthquake
         if elementName == "earthquakeNo" {
